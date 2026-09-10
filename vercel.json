@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": "npm run build && cp -r client/dist dist",
+  "buildCommand": "cd client && npx vite build && cd .. && rm -rf dist && cp -r client/dist dist",
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "rewrites": [
