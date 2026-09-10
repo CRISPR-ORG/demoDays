@@ -108,7 +108,7 @@ export const faqs = [
   },
   {
     q: 'What do I upload while registering?',
-    a: 'Your idea presentation, built on the official Demo Days template. PDF, PPT and PPTX are all accepted, up to 25 MB.',
+    a: 'Your idea presentation, built on the official Demo Days template. PDF, PPT and PPTX are all accepted, up to 4 MB — export or compress your deck if it comes in larger.',
   },
   {
     q: 'Can I register alone?',

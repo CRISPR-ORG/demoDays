@@ -20,7 +20,10 @@ export const TEAM = {
 };
 
 export const UPLOAD = {
-  maxBytes: 25 * 1024 * 1024,
+  // Kept under Vercel's hard ~4.5MB serverless request-body limit (there's no
+  // config flag to raise that cap). If this ever moves off Vercel onto a
+  // regular Node host, it's safe to raise this back up.
+  maxBytes: 4 * 1024 * 1024,
   allowedMimeTypes: [
     'application/pdf',
     'application/vnd.ms-powerpoint',
@@ -57,12 +60,21 @@ export const config = {
     allowLate: bool(process.env.ALLOW_LATE_REGISTRATION),
   },
 
-  /** Where submissions land when Google credentials are not configured yet. */
-  localStore: {
-    dir: path.join(SERVER_DIR, 'data'),
-    uploadsDir: path.join(SERVER_DIR, 'data', 'uploads'),
-    file: path.join(SERVER_DIR, 'data', 'submissions.json'),
-  },
+  /**
+   * Where submissions land if Google is unreachable. On a normal host this is
+   * a folder next to the server code; on Vercel the filesystem is read-only
+   * except `/tmp`, which is also wiped between invocations — so this is a
+   * short-lived safety net there, not durable storage. Google Sheets/Drive
+   * remains the real source of truth in both cases.
+   */
+  localStore: (() => {
+    const base = process.env.VERCEL ? '/tmp/demo-days-data' : path.join(SERVER_DIR, 'data');
+    return {
+      dir: base,
+      uploadsDir: path.join(base, 'uploads'),
+      file: path.join(base, 'submissions.json'),
+    };
+  })(),
 
   clientDist: path.join(ROOT_DIR, 'client', 'dist'),
 };

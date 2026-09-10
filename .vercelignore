@@ -1,0 +1,7 @@
+server/data/
+server/service-account.json
+server/.env
+.env
+*.docx
+*.pptx
+demoDays.jpeg

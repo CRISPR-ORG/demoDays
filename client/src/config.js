@@ -6,7 +6,9 @@
 export const TEAM_MIN = 2;
 export const TEAM_MAX = 4;
 
-export const MAX_UPLOAD_MB = 25;
+// Kept under Vercel's hard ~4.5MB serverless request-body limit — there's no
+// config flag to raise that cap. Keep in sync with server/src/config.js.
+export const MAX_UPLOAD_MB = 4;
 export const ACCEPTED_EXTENSIONS = ['.pdf', '.ppt', '.pptx'];
 
 /** Team lead's email must be an IIITN institute address. */

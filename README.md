@@ -124,7 +124,7 @@ One row per team. Unused member columns stay blank.
 | Team lead phone | 10-digit Indian mobile, optional `+91` |
 | Number of members | 2–4, selectable |
 | Per member | full name + BT ID (uppercased, no duplicates within a team) |
-| Idea deck | PDF / PPT / PPTX, max 25 MB, drag-and-drop with live upload progress |
+| Idea deck | PDF / PPT / PPTX, max 4 MB, drag-and-drop with live upload progress |
 
 Member 1 is treated as the team lead. Teams are identified by their (unique) team
 name throughout — there's no separate registration ID shown to entrants or stored in
@@ -164,11 +164,11 @@ All event copy — dates, stages, prizes, rules, eligibility, FAQ — is in
 
 ### Numbers to double-check with the organisers
 
-The source brief is internally inconsistent in a few places; the site currently uses:
+The source brief is internally inconsistent in a couple of places; the site currently uses:
 
-- **Prize pool ₹15,000** (from the poster). The brief's text says ₹7,000 total while
-  listing ₹5,000 + ₹3,000 in tiers.
-- **Second runner-up: "To be announced"** — no amount was given.
 - **Registration closes 15 Sep 2026** (poster tape + brief header). One later line in
   the brief says 17 September.
 - **17 September 2026** is treated as the on-campus prelims date.
+
+Prize tiers are confirmed as **Winner ₹7,000 · First runner-up ₹5,000 · Second
+runner-up ₹3,000**, totalling the poster's **₹15,000** pool.
