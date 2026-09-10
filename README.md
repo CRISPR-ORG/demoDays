@@ -51,6 +51,67 @@ npm start            # Express serves the API *and* the built site on :4000
 The server auto-detects `client/dist` and serves it with an SPA fallback, so the whole
 thing deploys as one service. Set `NODE_ENV=production` and a real `CORS_ORIGIN`.
 
+## Deploying to Vercel
+
+This repo is set up to deploy as a single Vercel project — the React site as a static
+build, the API as one serverless function.
+
+```bash
+npx vercel        # first deploy, follow the prompts to link/create the project
+npx vercel --prod # promote to production
+```
+
+`vercel.json` already points Vercel at `npm run build` → `client/dist` for the static
+site, and `api/[...path].mjs` catches every `/api/*` request and hands it to the same
+Express app (`server/src/app.js`) used locally — so registration, Sheets and Drive all
+behave identically to `npm run dev`.
+
+**Set these as Environment Variables in the Vercel project settings** (Settings →
+Environment Variables) — `.env` files are never deployed:
+
+| Variable | Value |
+|---|---|
+| `GOOGLE_SHEET_ID` | from `server/.env.example` |
+| `GOOGLE_SHEET_TAB` | `Registrations` |
+| `GOOGLE_DRIVE_FOLDER_ID` | from `server/.env.example` |
+| `GOOGLE_OAUTH_CLIENT_ID` | from your OAuth client |
+| `GOOGLE_OAUTH_CLIENT_SECRET` | from your OAuth client |
+| `GOOGLE_OAUTH_REFRESH_TOKEN` | from `npm run token --workspace server` |
+| `GOOGLE_DRIVE_IS_SHARED_DRIVE` | `false` (unless it actually is one) |
+| `REGISTRATION_CLOSES_AT` | e.g. `2026-09-15T20:00:00+05:30` |
+| `NODE_ENV` | `production` |
+
+Use **OAuth**, not the service-account JSON file, on Vercel — there's no filesystem to
+put `service-account.json` on. (`GOOGLE_SERVICE_ACCOUNT_JSON` as a raw-JSON env var
+would also work if you ever need that mode instead.)
+
+### The one real constraint: upload size
+
+Vercel's serverless functions cap the request body at **~4.5 MB**, and that limit isn't
+configurable. The upload cap is set to **4 MB** (`UPLOAD.maxBytes` in
+`server/src/config.js`, `MAX_UPLOAD_MB` in `client/src/config.js`) specifically to fit
+under that with headroom — don't raise it while this stays on Vercel. If a 4 MB cap
+turns out to be too tight for real decks, the fix is to move the API off Vercel onto a
+normal Node host (Render, Railway, Fly.io, a VPS) and deploy only the static site here,
+raising the limit back up on that host.
+
+### Local fallback storage on Vercel
+
+If Google is ever unreachable, submissions fall back to disk — but Vercel's filesystem
+is read-only outside `/tmp`, and `/tmp` doesn't persist between invocations. The code
+detects `process.env.VERCEL` and writes there instead of crashing, so a submission is
+never lost outright, but treat it as a short-lived safety net on Vercel, not durable
+storage — Google Sheets/Drive is the real source of truth.
+
+### Rate limiting on Vercel
+
+The 12-per-15-minutes limit (`server/src/routes/register.js`) is held in each
+function instance's memory. Under real serverless scaling Vercel can run several
+instances in parallel, each with its own counter, so the effective limit per IP is
+somewhat looser than 12 — not unlimited, just not perfectly precise. Fine for an event
+registration form's traffic; if it ever needs to be exact, that means a shared store
+(e.g. Upstash Redis) instead of the default in-memory one.
+
 ---
 
 ## Google setup
