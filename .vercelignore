@@ -2,6 +2,10 @@ server/data/
 server/service-account.json
 server/.env
 .env
-*.docx
-*.pptx
-demoDays.jpeg
+# Leading "/" anchors these to the repo root only — without it, these
+# patterns also matched (and deleted) the same-named files inside
+# client/public/ that the deployed site actually serves.
+/DemoDaysTemplate.pptx
+/DemoDaysTemplate (1).pptx
+/IIITN Demo Days.docx
+/demoDays.jpeg
