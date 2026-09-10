@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+npm-debug.log*
+server/data/
+service-account.json
+credentials*.json
+.DS_Store
