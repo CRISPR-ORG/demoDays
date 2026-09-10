@@ -15,9 +15,14 @@ demoDays/
 │       ├── pages/Home.jsx      landing page
 │       └── pages/Register.jsx  registration form
 ├── server/                 Express API
+│   ├── src/app.js              the Express app itself (no listen()) — reused by
+│   │                           both index.js and the Vercel function below
+│   ├── src/index.js            local/traditional-host entry point (calls listen())
 │   ├── src/routes/register.js  validation → Drive upload → Sheet append
 │   ├── src/services/           googleAuth, sheets, drive, local fallback
 │   └── scripts/get-refresh-token.js
+├── api/[...path].mjs       Vercel serverless entry — wraps server/src/app.js
+├── vercel.json             build + routing config for Vercel
 └── package.json            npm workspaces + dev script
 ```
 
