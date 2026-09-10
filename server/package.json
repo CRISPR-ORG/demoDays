@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
-    "token": "node scripts/get-refresh-token.js"
+    "token": "node scripts/get-refresh-token.js",
+    "build": "echo 'server has no build step — served via api/[...path].mjs on Vercel'"
   },
   "dependencies": {
     "cors": "^2.8.5",
