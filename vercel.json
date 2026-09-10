@@ -1,6 +1,6 @@
 {
-  "buildCommand": "bash -c 'set -euxo pipefail; pwd; ls -la; npm run build; ls -la client/dist; rm -rf dist; cp -r client/dist dist; ls -la dist'",
-  "outputDirectory": "dist",
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/dist",
   "installCommand": "npm install",
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
