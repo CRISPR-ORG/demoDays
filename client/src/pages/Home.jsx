@@ -59,6 +59,10 @@ export default function Home() {
         <div className="shell hero__grid">
           <div>
             <Reveal>
+              <span className="eyebrow">CRISPR presents</span>
+            </Reveal>
+
+            <Reveal delay={30}>
               <span className="eyebrow">{event.host}</span>
             </Reveal>
 

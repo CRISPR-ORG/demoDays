@@ -26,7 +26,7 @@ export default function Nav() {
     <header className={`nav ${scrolled ? 'nav--scrolled' : ''}`}>
       <div className="shell nav__inner">
         <Link to="/" className="brand" aria-label={`${event.name} home`}>
-          <span className="brand__mark" aria-hidden="true">D+</span>
+          <img src="/crisprLogo.png" alt="CRISPR" className="brand__mark" />
           <span>Demo Days</span>
           <span className="brand__year">{event.year}</span>
         </Link>

@@ -241,6 +241,18 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.82rem;
   border-radius: 3px;
   flex-shrink: 0;
+  object-fit: contain;
+  padding: 3px;
+}
+
+.footer__brand {
+  align-items: center;
+}
+
+.footer__logo {
+  width: 44px;
+  height: 44px;
+  padding: 5px;
 }
 
 .brand__year {

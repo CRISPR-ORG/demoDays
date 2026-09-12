@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="shell footer__grid">
         <div>
-          <div className="brand" style={{ marginBottom: 12 }}>
-            <span className="brand__mark" aria-hidden="true">D+</span>
+          <div className="brand footer__brand" style={{ marginBottom: 12 }}>
+            <img src="/crisprLogo.png" alt="CRISPR" className="brand__mark footer__logo" />
             <span>Demo Days {event.year}</span>
           </div>
           <p className="footer__meta">
