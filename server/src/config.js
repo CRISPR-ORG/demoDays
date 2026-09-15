@@ -56,7 +56,7 @@ export const config = {
   },
 
   registration: {
-    closesAt: process.env.REGISTRATION_CLOSES_AT ?? '2026-09-15T20:00:00+05:30',
+    closesAt: process.env.REGISTRATION_CLOSES_AT ?? '2026-09-16T12:00:00+05:30',
     allowLate: bool(process.env.ALLOW_LATE_REGISTRATION),
   },
 
