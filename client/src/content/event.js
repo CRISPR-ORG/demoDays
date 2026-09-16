@@ -11,8 +11,8 @@ export const event = {
   venue: 'Seminar Hall, IIIT Nagpur, Maharashtra, India',
   eventDate: '17 September 2026',
   prizePool: '₹15,000',
-  registrationClosesAt: '2026-09-16T12:00:00+05:30',
-  registrationClosesLabel: '16 September 2026, 12:00 PM IST',
+  registrationClosesAt: '2026-09-16T15:00:00+05:30',
+  registrationClosesLabel: '16 September 2026, 3:00 PM IST',
   pptTemplateUrl: '/DemoDaysTemplate.pptx',
   presentedBy: 'CRISPR · IIIT Nagpur',
 };
@@ -94,7 +94,7 @@ export const rules = [
 ];
 
 export const dates = [
-  { label: 'Registration closes', value: '16 September 2026, 12:00 PM IST', locked: false },
+  { label: 'Registration closes', value: '16 September 2026, 3:00 PM IST', locked: false },
   { label: 'Online submission', value: 'Announced with shortlist', locked: true },
   { label: 'Prelims · on campus', value: '17 September 2026', locked: false },
   { label: 'Mentorship phase', value: '1 month post-Prelims', locked: true },
