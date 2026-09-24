@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.gitignore
+README.md
+*.md
+.env*
+*.log
+.DS_Store
+*.pptx
+*.docx
+*.jpeg
+*.png
+docker-compose.yml
+docker-compose.yaml
